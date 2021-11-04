@@ -1,0 +1,55 @@
+{% extends 'main/navegacao.html' %}
+
+{%block title%} Pokemon {% endblock %}
+
+{% block content %} 
+<h3>Procurar Pokémon </h3>
+Procurar por nome ou Id.
+<form method="post" action="/pokemon/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        {{form.nome}}
+        <div class="input-group-prepend">
+        <button type="submit", name="salvar" class="btn btn-success">Procurar</button>
+        </div>
+    </div>
+    <div>
+        <div class="text-center">
+            <h1>{{Nome}}</h1>
+            <img src={{Foto}} class="rounded" alt="" style="width:250px;height:auto;">
+            <h3>Id: {{Id}}</h3>
+        </div>
+        
+        <div style="width: 50%;
+                    position: absolute;
+                    z-index: 1;
+                    left: 0">
+            <ul class="list-group"style="color: white; padding: 2px">Tipos
+                {% for item in Tipo %}
+                    <li class="list-group-item">{{item}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="width: 50%;
+                    position: relative;
+                    z-index: 1;
+                    left: 50%">
+            <ul class="list-group"style="color: white; padding: 2px">Fraquezas
+                {% for item in Fraqueza %}
+                    <li class="list-group-item">{{item}}</li>
+                {% endfor %}
+        </ul>
+        </div>
+        <div>
+        <ul class="list-group"style="color: white; padding: 2px">Stats
+            <li class="list-group-item">HP: {{Stats.0}} ❤</li>
+            <li class="list-group-item">Ataque: {{Stats.1}} ⚔</li>
+            <li class="list-group-item">Defesa: {{Stats.2}} 🛡</li>
+            <li class="list-group-item">Ataque Esp.: {{Stats.3}} ☄</li>
+            <li class="list-group-item">Desfesa Esp.: {{Stats.4}} 🦺</li>
+            <li class="list-group-item">Velocidade: {{Stats.5}} ⚡</li>
+        </ul>
+        </div>
+    </div>
+</form>
+{% endblock %}
